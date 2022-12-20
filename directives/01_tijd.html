@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+		<div id="tijd">
+			<p>Geef het huidig tijdstip in</p>
+			<input v-model="tijd" size="30" />
+			<div v-show="tijd>7 && tijd<12">Goeiemorgen</div>
+			<div v-show="tijd>=12 && tijd<18">Goeiemiddag</div>
+			<div v-show="tijd>=18 && tijd<22">Goeieavond</div>
+			<div v-show="tijd<0 || tijd>24 || tijd.length==0">
+				Dit is geen geldig tijdstip
+			</div>
+			<div
+				v-show="((tijd>=0 && tijd<=7) || (tijd >=22 && tijd<=24)) && tijd.length!=0"
+			>
+				Goeienacht
+			</div>
+		</div>
+
+		<script>
+			const tijdBoodschap = {
+				data() {
+					return {
+						tijd: 25,
+					};
+				},
+			};
+			Vue.createApp(tijdBoodschap).mount("#tijd");
+		</script>
+	</body>
+</html>
